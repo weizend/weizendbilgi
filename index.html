@@ -78,6 +78,64 @@
             font-weight: 600;
             margin-top: 5px;
         }
+        
+        /* HEADER BUTONLARI EKLENTİSİ */
+        .header-actions {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-actions-text {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header-actions-text strong {
+            color: var(--text-light);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cmd-link {
+            background-color: rgba(255, 0, 0, 0.15);
+            border: 1px solid var(--neon-red);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 10px rgba(255,0,0,0.1);
+        }
+
+        .cmd-link:hover {
+            background-color: rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255,0,0,0.5);
+            transform: translateY(-2px);
+            color: white;
+            border-color: white;
+        }
 
         /* 4'LÜ GRID SİSTEMİ */
         .grid-container {
@@ -104,7 +162,7 @@
             box-shadow: 0 0 20px rgba(255,0,0,0.4), inset 0 0 10px rgba(255,0,0,0.1);
         }
 
-        /* KART BAŞLIKLARI (Örn: 1. PUAN KAZANMA YÖNTEMLERİ) */
+        /* KART BAŞLIKLARI */
         .card-header {
             display: flex;
             align-items: center;
@@ -251,7 +309,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end; /* Metinlerin her zaman aynı alt hizada kalmasını garantiler */
+            justify-content: flex-end; 
             text-decoration: none;
             color: var(--text-light);
             font-size: 0.9rem;
@@ -264,7 +322,7 @@
         .social-icon {
             font-size: 1.8rem;
             margin-bottom: 5px;
-            padding: 2px; /* Tüm ikonların kapladığı alanı Steam ikonuyla eşitler */
+            padding: 2px;
         }
 
         /* İkon Renkleri */
@@ -272,9 +330,9 @@
         .insta-color { color: #e1306c; }
         .tiktok-color { color: #ff0050; }
         .youtube-color { color: #ff0000; }
-        .steam-color { color: #171a21; background: white; border-radius: 50%; } /* padding buradan kaldırılıp yukarı eklendi */
+        .steam-color { color: #171a21; background: white; border-radius: 50%; } 
         .discord-color { color: #5865F2; }
-        .market-color { color: #ffcc00; } /* Market İkon Rengi */
+        .market-color { color: #ffcc00; } 
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
@@ -291,6 +349,22 @@
         <header class="header">
             <h1><span class="white">YAYIN, PUAN &</span> <span class="red">ÇEKİLİŞ REHBERİ</span></h1>
             <p>İzleyiciler İçin Puan Kazanma, Etkinlikler ve Bilet Bar Çekiliş Sistemi</p>
+            
+            <!-- EKLENEN YENİ BUTON VE BİLGİLENDİRME ALANI -->
+            <div class="header-actions">
+                
+                <div class="action-buttons">
+                    <a href="https://kick.com/weizend/subscribe" target="_blank" class="cmd-link">
+                        <i class="fa-solid fa-star kick-color" style="font-size: 1.1rem;"></i> !abone
+                    </a>
+                    <a href="https://www.bynogame.com/destekle/weizend" target="_blank" class="cmd-link">
+                        <i class="fa-solid fa-heart" style="color: var(--neon-red); font-size: 1.1rem;"></i> !bağış
+                    </a>
+                    <a href="https://weizend.github.io/weizendmarket/" target="_blank" class="cmd-link">
+                        <i class="fa-solid fa-cart-shopping market-color" style="font-size: 1.1rem;"></i> !market
+                    </a>
+                </div>
+            </div>
         </header>
 
         <!-- 4'LÜ KART İÇERİĞİ -->
@@ -309,13 +383,14 @@
                     <li class="red-bullet"><strong>Abonelik Hediyesi:</strong> <span class="text-green">15.000</span> Puan kazan!</li>
                     <li class="red-bullet"><strong>Bağış Yapmak:</strong> Bağış miktarı <span class="text-green">x100</span> Puan kazan! (1 KİCKs <span class="text-green">x30</span> Puan)</li>
                     
-                    <!-- Zar Oyunu (3 Satıra Bölünmüş Hali) -->
+                    <!-- Zar Oyunu -->
                     <li class="red-bullet">
                         <strong>Zar Oyunu Risk</strong> <span class="cmd">!gamble [puan]</span><br>
                         <div style="margin-top: 5px;">
                             <span class="text-red">6-x3</span>, <span class="text-red">5-iade</span>, <span class="text-red">4-yarısı</span>, <span class="text-red">3-2-1-silinir!</span>
                         </div>
-                        <div style="margin-top: 5px; color: var(--text-gray); font-size: 0.9rem;">
+                        <!-- RENGİ DÜZELTİLEN KISIM -->
+                        <div style="margin-top: 5px; color: var(--text-light); font-size: 0.95rem;">
                             <span class="cmd">!gamble all</span> ile tüm puanlarını riske atabilirsin.
                         </div>
                     </li>
@@ -408,12 +483,8 @@
 
         </div>
 
-        <!-- SOSYAL MEDYA ALT BAR -->
+        <!-- SOSYAL MEDYA ALT BAR (Market Kaldırıldı) -->
         <footer class="social-footer">
-            <a href="https://weizend.github.io/weizendmarket/" target="_blank" class="social-item">
-                <i class="fa-solid fa-cart-shopping social-icon market-color"></i>
-                <span>Market</span>
-            </a>
             <a href="https://kick.com/weizend" target="_blank" class="social-item">
                 <i class="fa-solid fa-k social-icon kick-color"></i>
                 <span>Kick</span>
