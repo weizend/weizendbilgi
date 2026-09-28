@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEİZEND YAYIN REHBERİ</title>
+    <title>WEİZEND YAYIN, PUAN & ÇEKİLİŞ REHBERİ</title>
+    <!-- FontAwesome Eklenmesi (Sosyal medya ikonları için) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
 
         :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #151515;
-            --main-red: #e60000;
-            --glow-red: rgba(230, 0, 0, 0.4);
+            --bg-main: #050505;
+            --bg-card: #0a0a0a;
+            --neon-red: #ff0000;
+            --dark-red: #8b0000;
             --text-light: #ffffff;
             --text-gray: #b3b3b3;
-            --border-dark: #222222;
+            --success-green: #00ff00;
+            --warning-yellow: #ffcc00;
         }
 
         * {
@@ -25,460 +28,419 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-main);
             color: var(--text-light);
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        /* HEADER & LOGO AREA */
-        .header-section {
-            text-align: center;
-            padding: 60px 20px 40px;
-            background: linear-gradient(180deg, #1a0505 0%, var(--bg-dark) 100%);
-            border-bottom: 2px solid var(--border-dark);
-            margin-bottom: 50px;
-        }
-
-        .logo-container {
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .logo-container img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid var(--main-red);
-            box-shadow: 0 0 25px var(--glow-red);
-            object-fit: cover;
-            background-color: #000; 
-        }
-
-        .header-section h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-light);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-
-        .header-section h1 span {
-            color: var(--main-red);
+            line-height: 1.5;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, rgba(255,0,0,0.05) 0%, transparent 50%);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 35px;
-            background-color: var(--main-red);
-            border-radius: 4px;
-            box-shadow: 0 0 10px var(--glow-red);
-        }
-
-        /* GRID SYSTEM */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        /* CARDS */
-        .card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-dark);
+        /* HEADER ALANI */
+        .header {
+            text-align: center;
+            border: 2px solid var(--neon-red);
             border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            padding: 20px;
+            margin-bottom: 25px;
+            background: linear-gradient(180deg, rgba(255,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
+            box-shadow: 0 0 15px rgba(255,0,0,0.3), inset 0 0 10px rgba(255,0,0,0.2);
             position: relative;
-            overflow: hidden;
         }
 
-        .card::before {
+        .header::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--main-red);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            transform-origin: left;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px dashed rgba(255,0,0,0.3);
+            border-radius: 8px;
+            pointer-events: none;
         }
 
-        .card:hover::before {
-            transform: scaleX(1);
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .header h1 .white { color: var(--text-light); }
+        .header h1 .red { color: var(--neon-red); }
+
+        .header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* 4'LÜ GRID SİSTEMİ */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* KART TASARIMI */
+        .card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--dark-red);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(255,0,0,0.15), inset 0 0 20px rgba(0,0,0,0.8);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            border-color: var(--main-red);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: translateY(-5px);
+            border-color: var(--neon-red);
+            box-shadow: 0 0 20px rgba(255,0,0,0.4), inset 0 0 10px rgba(255,0,0,0.1);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-dark);
+        /* KART BAŞLIKLARI (Örn: 1. PUAN KAZANMA YÖNTEMLERİ) */
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,0,0,0.2);
             padding-bottom: 10px;
         }
 
-        .card p {
-            color: var(--text-gray);
-            margin-bottom: 15px;
+        .card-number {
+            background-color: var(--neon-red);
+            color: white;
+            font-size: 2rem;
+            font-weight: 900;
+            padding: 0 15px;
+            border-radius: 6px;
+            margin-right: 15px;
+            box-shadow: 2px 2px 0px rgba(255,255,255,0.2) inset;
         }
 
-        .card ul {
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+        }
+
+        .card-title .white { color: var(--text-light); }
+        .card-title .red { color: var(--neon-red); }
+
+        /* LİSTELER VE METİNLER */
+        .content-list {
             list-style: none;
+            flex-grow: 1;
         }
 
-        .card ul li {
+        .content-list li {
             position: relative;
-            padding-left: 25px;
+            padding-left: 20px;
             margin-bottom: 12px;
-            color: var(--text-gray);
+            font-size: 0.95rem;
+            color: var(--text-light);
         }
 
-        .card ul li::before {
-            content: "▹";
+        .content-list li::before {
+            content: "•";
+            color: var(--text-gray);
             position: absolute;
             left: 0;
-            top: -2px;
-            color: var(--main-red);
             font-size: 1.2rem;
-            font-weight: bold;
+            line-height: 1;
         }
+        
+        .content-list li.red-bullet::before { color: var(--neon-red); }
+        .content-list li.green-bullet::before { content: "⭐"; color: var(--success-green); font-size: 0.9rem; left: 0; top: 3px; }
+        .content-list li.white-bullet::before { content: "★"; color: white; font-size: 0.9rem; left: 0; top: 3px; }
 
-        .highlight {
-            color: var(--main-red);
-            font-weight: bold;
-        }
+        strong { font-weight: 800; }
+        .text-red { color: var(--neon-red); font-weight: 800; }
+        .text-green { color: var(--success-green); font-weight: 800; }
+        .text-yellow { color: var(--warning-yellow); font-weight: 800;}
 
-        .command {
-            background-color: #000;
+        /* KOMUT BUTONLARI (!gamble vb.) */
+        .cmd {
+            background-color: rgba(255, 0, 0, 0.15);
+            border: 1px solid var(--neon-red);
             color: var(--text-light);
-            padding: 3px 8px;
-            border-radius: 6px;
-            border: 1px solid #333;
+            padding: 2px 8px;
+            border-radius: 4px;
             font-family: monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        /* DETAY KUTULARI (Aşama kutuları için) */
+        .detail-box {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--neon-red);
+            padding: 8px 12px;
+            margin-top: 5px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .detail-box h4 {
+            color: var(--neon-red);
             font-size: 0.95rem;
+            margin-bottom: 3px;
         }
 
-        /* COMPARISON BOX FOR WHEEL */
-        .wheel-comparison {
+        /* BİLGİ VE UYARI KUTULARI */
+        .info-box {
+            background-color: rgba(255, 0, 0, 0.05);
+            border: 1px solid var(--neon-red);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+
+        .info-box i {
+            color: var(--neon-red);
+            font-size: 1.5rem;
+        }
+
+        .warning-box {
+            background-color: rgba(255, 204, 0, 0.1);
+            border: 1px solid var(--warning-yellow);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+        }
+
+        .warning-box i {
+            color: var(--warning-yellow);
+            font-size: 1.5rem;
+        }
+
+        .warning-box .title {
+            color: var(--warning-yellow);
+            font-weight: 900;
+        }
+
+        /* ALT SOSYAL MEDYA BAR */
+        .social-footer {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--bg-card);
+            border: 2px solid var(--dark-red);
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 0 10px rgba(255,0,0,0.2);
+        }
+
+        .social-item {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .wheel-box {
-            background-color: #0f0f0f;
-            border-left: 4px solid var(--border-dark);
-            padding: 15px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .wheel-box.sub {
-            border-left-color: var(--main-red);
-            background: linear-gradient(90deg, rgba(230,0,0,0.05) 0%, #0f0f0f 100%);
-        }
-
-        .wheel-box h4 {
-            color: var(--text-light);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-
-        /* CARD GAME & TICKET STAGES */
-        .stage-box {
-            background-color: #000;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 1px dashed var(--border-dark);
-        }
-        
-        .stage-box h4 {
-            color: var(--main-red);
-            margin-bottom: 5px;
-        }
-
-        /* CTA BUTTONS */
-        .cta-section {
-            text-align: center;
-            margin-top: 80px;
-            padding: 50px 20px;
-            background: linear-gradient(0deg, #1a0505 0%, var(--bg-dark) 100%);
-            border-top: 1px solid var(--border-dark);
-            border-bottom: 1px solid var(--border-dark);
-        }
-
-        .cta-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--text-light);
-        }
-
-        .button-group {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            align-items: center;
+            justify-content: flex-end; /* Metinlerin her zaman aynı alt hizada kalmasını garantiler */
             text-decoration: none;
-            text-transform: uppercase;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background-color: var(--main-red);
-            color: #fff;
-            border: 2px solid var(--main-red);
-            box-shadow: 0 5px 15px var(--glow-red);
-        }
-
-        .btn-primary:hover {
-            background-color: transparent;
-            color: var(--main-red);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
             color: var(--text-light);
-            border: 2px solid var(--border-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.2s;
         }
 
-        .btn-outline:hover {
-            border-color: var(--main-red);
-            color: var(--main-red);
-            transform: translateY(-3px);
+        .social-item:hover { transform: translateY(-3px); }
+
+        .social-icon {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            padding: 2px; /* Tüm ikonların kapladığı alanı Steam ikonuyla eşitler */
         }
 
-        @media (max-width: 768px) {
-            .header-section h1 { font-size: 2rem; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .btn { width: 100%; margin-bottom: 10px; }
+        /* İkon Renkleri */
+        .kick-color { color: #53fc18; }
+        .insta-color { color: #e1306c; }
+        .tiktok-color { color: #ff0050; }
+        .youtube-color { color: #ff0000; }
+        .steam-color { color: #171a21; background: white; border-radius: 50%; } /* padding buradan kaldırılıp yukarı eklendi */
+        .discord-color { color: #5865F2; }
+        .market-color { color: #ffcc00; } /* Market İkon Rengi */
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ÜST KISIM (HEADER & LOGO) -->
-    <header class="header-section">
-        <div class="logo-container">
-            <img src="https://i.hizliresim.com/fo5evkh4.png" alt="Weizend Logo">
-        </div>
-        <h1>WEİZEND <span>YAYIN REHBERİ</span></h1>
-        <p style="color: var(--text-gray); font-size: 1.1rem; max-width: 600px; margin: 15px auto 0;">
-            Yayınımızdaki etkileşimli oyunlar, ödül sistemleri ve ekonomi hakkında bilmen gereken her şey burada.
-        </p>
-    </header>
-
     <div class="container">
+        
+        <!-- ÜST BAŞLIK -->
+        <header class="header">
+            <h1><span class="white">YAYIN, PUAN &</span> <span class="red">ÇEKİLİŞ REHBERİ</span></h1>
+            <p>İzleyiciler İçin Puan Kazanma, Etkinlikler ve Bilet Bar Çekiliş Sistemi</p>
+        </header>
 
-        <!-- EKONOMİ SİSTEMİ -->
-        <h2 class="section-title">🪙 Ekonomi & Market Sistemi</h2>
-        <div class="grid-2">
+        <!-- 4'LÜ KART İÇERİĞİ -->
+        <div class="grid-container">
+
+            <!-- 1. KART: PUAN KAZANMA -->
             <div class="card">
-                <span class="card-icon">💎</span>
-                <h3>Puan ve Kazanma Yolları</h3>
-                <p>Yayınımıza destek olduğun her an sistem seni ödüllendirir. Biriken puanlarınla marketten alışveriş yapabilir veya oyunlarda kullanabilirsin.</p>
-                <ul>
-                    <li><span class="highlight">Takipçi:</span> Aramıza katıldığında 1.000 Puan eklenir.</li>
-                    <li><span class="highlight">Normal Abone:</span> Abone olduğunda 20.000 Puan kazanırsın.</li>
-                    <li><span class="highlight">Hediye Abone:</span> Hediye ettiğin her abonelik için 15.000 Puan gelir.</li>
-                    <li><span class="highlight">Bağış (TL):</span> Yaptığın her 1 TL bağış karşılığında 100 Puan alırsın.</li>
-                    <li><span class="highlight">KICKs:</span> Gönderdiğin KICKs miktarı x30 Puan olarak yansır.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <span class="card-icon">🛒</span>
-                <h3>Market Alışverişi</h3>
-                <p>Biriktirdiğin puanlarla <span class="highlight">Weizend Market</span> sitemizde istediğin ürünü alabilirsin.</p>
-                <ul>
-                    <li><strong>Market:</strong> Sayfanın altındaki puan market butonuna tıklayarak veya kick sohbetimize <span class="command">!market</span> yazarak weizend puan marketini ziyaret edebilir, biriken Puan'larınla harika ürünler alabilirsin.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- İNTERAKTİF OYUNLAR -->
-        <h2 class="section-title">🎮 Mini Oyunlar & Ödüller</h2>
-        <div class="grid-3">
-            
-            <!-- Zar Oyunu -->
-            <div class="card">
-                <span class="card-icon">🎲</span>
-                <h3>Zar Oyunu</h3>
-                <p>Risk alıp puanlarını katlamak isteyen cesur izleyiciler içindir!</p>
-                <ul>
-                    <li>Sohbete <span class="command">!gamble [puan]</span> yazarak zar atarsın. (Örn: !zar 500)</li>
-                    <li>Zarlar atıldığında sonuç <strong>1,2,3,4,5</strong> veya <strong>6</strong> gelir.</li>
-                    <li>1,2,3 gelirse verdiğin puanı kaybedersin, 4 gelirse yarısını geri alırsın, 5 gelirse tamamını geri alırsın, şansın yaver gider 6 gelirse yatırdığın puanı <strong>x3 (üç katı)</strong> olarak geri alırsın! Şanssız günündeysen puan kasanın olur.</li>
-                </ul>
-            </div>
-
-            <!-- Basketbol Oyunu -->
-            <div class="card">
-                <span class="card-icon">🏀</span>
-                <h3>Basketbol (!atla)</h3>
-                <p>Fizik kurallarıyla çalışan, potaya atış yaptığın şans oyunudur. 50 saniyede bir oynanabilir.</p>
-                <ul>
-                    <li>Sohbete <span class="command">!atla</span> yazarak topu fırlatırsın.</li>
-                    <li>Top potaya girerse; <span class="highlight">Çark Hakkı</span>, <span class="highlight">Kart Hakkı</span> veya <span class="highlight">Bonus Puan</span> kazanırsın!</li>
-                    <li><strong>Abone Avantajı:</strong> Abone topları yere düşünce daha çok seker, potaya girme ihtimali çok daha yüksektir.</li>
-                </ul>
-            </div>
-
-            <!-- Matematik Oyunu -->
-            <div class="card">
-                <span class="card-icon">🧮</span>
-                <h3>Matematik & Çekiliş</h3>
-                <p>Sohbete 3/6 dakika arayla rastgele gelen matematik sorularını ilk çözen kazanır!</p>
-                <ul>
-                    <li>Sorunun cevabını sohbete <strong>ilk sen</strong> yazarsan çekiliş listesine girer ve <span class="highlight">Çark Çevirme Hakkı</span> kazanırsın.</li>
-                    <li>Sohbete <span class="command">!katıl</span> yazarak aktif çekilişlere katılabilirsin.</li>
-                    <li>Toplu kart oylamalarında numarayı yazarak masadaki kartları eleyebilir veya seçebilirsin.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- BÜYÜK SİSTEMLER -->
-        <h2 class="section-title">🏆 Gelişmiş Ödül Sistemleri</h2>
-        <div class="grid-2">
-
-            <!-- Bar Bilet Sistemi -->
-            <div class="card">
-                <span class="card-icon">🎟️</span>
-                <h3>Bar Bilet Çekiliş Sistemi</h3>
-                <p>Biletlerini biriktir, barı doldur ve ödülleri kap!</p>
-                
-                <div class="stage-box" style="border-color: var(--border-dark);">
-                    <h4>Çekiliş Nasıl Çalışır?</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0;">Marketten, Çarktan veya Etkinliklerden kazandığın biletler envanterinde birikir. Ekrandaki bar, izleyiciler katıldıkça yukarı doğru dolar. Bar %100 olduğunda patlama efektiyle slot çekilişi başlar ve kazananın ödülü anında <strong>envanterine</strong> eklenir!</p>
+                <div class="card-header">
+                    <div class="card-number">1.</div>
+                    <div class="card-title"><span class="white">PUAN KAZANMA</span> <span class="red">YÖNTEMLERİ</span></div>
                 </div>
+                <ul class="content-list">
+                    <li class="red-bullet"><strong>Sadakat Puanları (SP):</strong> Yayınları izledikçe otomatik kazanırsın. (Takipçi: 1.000 Puan)</li>
+                    <li class="red-bullet"><strong>Puan Çarkı:</strong> SP karşılığı, pota veya matematik sorularıyla kazanılır.</li>
+                    <li class="red-bullet"><strong>Abone Olmak:</strong> <span class="text-green">20.000 Puan</span> kazan!</li>
+                    <li class="red-bullet"><strong>Abonelik Hediyesi:</strong> <span class="text-green">15.000 Puan</span> kazan!</li>
+                    <li class="red-bullet"><strong>Bağış Yapmak:</strong> Bağış miktarının <span class="text-green">100 katı</span> puan! (KICKs: x30 Puan)</li>
+                    
+                    <!-- Zar Oyunu (3 Satıra Bölünmüş Hali) -->
+                    <li class="red-bullet">
+                        <strong>Zar Oyunu Risk</strong> <span class="cmd">!gamble [puan]</span><br>
+                        <div style="margin-top: 5px;">
+                            <span class="text-red">6-x3</span>, <span class="text-red">5-iade</span>, <span class="text-red">4-yarısı</span>, <span class="text-red">3-2-1-silinir!</span>
+                        </div>
+                        <div style="margin-top: 5px; color: var(--text-gray); font-size: 0.9rem;">
+                            <span class="cmd">!gamble all</span> ile tüm puanlarını riske atabilirsin.
+                        </div>
+                    </li>
+                </ul>
+                <div class="info-box">
+                    <i class="fa-solid fa-gift"></i>
+                    <div>Puan görmek için <span class="cmd">!banka</span> , harcamak için <span class="cmd">!market</span> yazabilirsin!</div>
+                </div>
+            </div>
 
-                <ul style="margin-top: 15px;">
-                    <li><span class="command">!barkatıl</span>: Envanterindeki biletlerle o anki bar çekilişine katılırsın.</li>
-                    <li><span class="command">!biletsat [adet]</span>: İhtiyacın olmayan biletleri tanesi <strong>5.000 Puan</strong> karşılığında satıp nakite çevirirsin.</li>
-                    <li><span class="command">!envanter</span>: Sahip olduğun biletleri ve teslim bekleyen ödüllerini anlık olarak kontrol edersin.</li>
-                    <li><span class="command">!çekiliş</span>: O günkü bar dolum sayısını ve kazananları ekrana getirir.</li>
+            <!-- 2. KART: BASKETBOL ETKİNLİĞİ -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-number">2.</div>
+                    <div class="card-title"><span class="white">BASKETBOL</span> <span class="red">ETKİNLİĞİ</span></div>
+                </div>
+                <ul class="content-list">
+                    <li class="red-bullet">Herkes <strong>50 saniyede bir</strong> <span class="cmd">!atla</span> komutunu kullanabilir!</li>
+                    <li class="red-bullet">🏀 <strong>İşleyiş:</strong> Basketbol topu ekrandan düşer, potaya girenler için puan çarkı döner.</li>
+                    <li class="green-bullet"><span class="text-green">Abone Özel:</span> Top çok seker, arka plan <strong>yeşil</strong> olur. Çarkta <span class="text-green">x2-x3</span> çarpanlar, yüksek puanlar ve <span class="text-green">ASLA PAS YOKTUR!</span></li>
+                    <li class="white-bullet"><strong>Normal İzleyici:</strong> Top az <strong>seker</strong>, arka plan <strong>beyaz</strong> olur. Çarkta çarpan yok, az puanlar ve <span class="text-red">4 pas</span> bulunur.</li>
+                </ul>
+                <div class="info-box">
+                    <i class="fa-solid fa-gift"></i>
+                    <div>Abone olmak, abonelik hediyesi göndermek veya bağış yaparak destek olmak için <span class="cmd">!abone</span> <span class="cmd">!bağış</span> komutlarını kullanabilirsin.</div>
+                </div>
+            </div>
+
+            <!-- 3. KART: MİNİ ETKİNLİKLER & MATEMATİK & KART OYUNU -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-number">3.</div>
+                    <div class="card-title"><span class="white">MİNİ ETKİNLİKLER &</span> <span class="red">MATEMATİK</span></div>
+                </div>
+                <ul class="content-list">
+                    <li class="red-bullet" style="font-size: 1.1rem; margin-top: 5px;"><strong>🧮 Matematik Soruları</strong></li>
+                    <li style="margin-left: 20px;">3-6 dakikada bir sohbetimize otomatik gelir:
+                        <ul style="margin-top: 5px; list-style-type: circle; margin-left: 20px; color: var(--text-gray);">
+                            <li>İlk bilen anında puan çarkı kazanır ve <strong class="text-yellow">yüksek puan, kart oyunu ya da bar bileti</strong> çekiliş listesine eklenir.</li>
+                            <li><strong>Adil Sistem:</strong> Aynı kişi tekrar bilirse sadece kendi puan çarkı döner, başkasının listeye girmesini engeller.</li>
+                        </ul>
+                    </li>
+                    <li class="red-bullet" style="font-size: 1.1rem; margin-top: 15px;"><strong>🎯 Tahmin Oyunu</strong></li>
+                    <li style="margin-left: 20px;">Yayıncının sorduğu soruya doğru <strong>tahmini</strong> ilk yazan kişi korna sesiyle birlikte ekranda belirir ve <span class="text-yellow">yüksek puan, kart oyunu ya da bar bileti</span> kazanır.</li>
+                    
+                    <li class="red-bullet" style="font-size: 1.1rem; margin-top: 15px;"><strong>🃏 Kart Katlama Oyunu</strong></li>
+                    <li style="margin-left: 20px;">Riske gir, aşamaları geç ve büyük ödülü (VP) kap!</li>
+                    <div class="detail-box">
+                        <h4>1. Aşama</h4>
+                        Masada 4 Kart vardır. Seçimini yaparsın, doğruyu bulursan <span class="text-green">375 VP</span> senin olur. "TAMAM" deyip çekilebilir veya "DEVAM" diyerek riski artırabilirsin.
+                    </div>
+                    <div class="detail-box">
+                        <h4>2. Aşama (Devam Edersen)</h4>
+                        Masadan 1 kart eksilir ve 3 Kart kalır. Seçtiğin kart doğru çıkarsa ödülün <span class="text-green">825 VP</span>'ye yükselir!
+                    </div>
+                    <div class="detail-box">
+                        <h4>3. Aşama (Son Aşama)</h4>
+                        Masada sadece 2 Kart kalır. Doğru olanı bulursan büyük ödül olan <span class="text-green">1.700 VP</span>'nin sahibi olursun!
+                    </div>
+                    <li style="margin-left: 20px; color: var(--text-gray); font-size: 0.85rem; font-style: italic;">Not: İstediğin zaman sohbete <span class="cmd">TAMAM</span> yazarak kazandığın mevcut ödülü alıp envanterine ekleyebilirsin.</li>
                 </ul>
             </div>
 
-            <!-- Çark Sistemi -->
+            <!-- 4. KART: BİLET BAR ÇEKİLİŞİ -->
             <div class="card">
-                <span class="card-icon">🎡</span>
-                <h3>Çark Çevirme Sistemi</h3>
-                <p>Büyük ödüllerin ve sürpriz çarpanların olduğu özel çarkımız.</p>
-                
-                <p style="font-size: 0.95rem; margin-bottom: 15px;"><strong>Çark Hakkı Nasıl Kazanılır?</strong><br>
-                Sadakat puanlarınla satın alarak, basket oyununda potayı tutturarak veya ekrandaki matematik sorularını ilk bilen kişi olarak bu hakkı elde edebilirsin.</p>
-                
-                <div class="wheel-comparison">
-                    <div class="wheel-box">
-                        <h4>İzleyici Çarkı</h4>
-                        <ul style="margin:0;">
-                            <li>Daha düşük seviye Puan ödülleri.</li>
-                            <li>Çarkta <strong>4 Adet PAS</strong> (ödülsüz boş dilim) bulunur. Çarpan (x2, x3) yoktur.</li>
+                <div class="card-header">
+                    <div class="card-number">4.</div>
+                    <div class="card-title"><span class="white">BİLET BAR</span> <span class="red">ÇEKİLİŞ SİSTEMİ</span></div>
+                </div>
+                <ul class="content-list">
+                    <li style="margin-bottom: 15px;">Sağ taraftaki ödül barını istediğiniz kadar patlatıp çekiliş başlatabilirsiniz:</li>
+                    <li class="red-bullet"><strong>Bilet Alımı:</strong> <span class="cmd">!market</span> üzerinden puanlarla bilet alabilirsin.</li>
+                    
+                    <div style="margin-left: 20px; margin-bottom: 15px;">
+                        <ul style="list-style-type: none;">
+                            <li style="margin-bottom: 8px;">🔹 <span class="cmd">!barkatıl</span>: Envanterindeki biletlerle o anki bar çekilişine katılırsın. Mevcut bar için sadece <strong class="text-red">1 kere</strong> katılabilirsin.</li>
+                            <li style="margin-bottom: 8px;">🔹 <span class="cmd">!biletsat [adet]</span>: İhtiyacın olmayan biletleri tanesi <strong class="text-red">5.000 Puan</strong> karşılığında satıp nakite çevirirsin.</li>
+                            <li style="margin-bottom: 8px;">🔹 <span class="cmd">!envanter</span>: Sahip olduğun biletleri ve teslim bekleyen ödüllerini anlık olarak kontrol edersin.</li>
+                            <li>🔹 <span class="cmd">!çekiliş</span>: O günkü bar dolum sayısını ve kazananları ekrana getirir.</li>
                         </ul>
                     </div>
-                    <div class="wheel-box sub">
-                        <h4>⭐ Abone Çarkı</h4>
-                        <ul style="margin:0;">
-                            <li>Çok daha <strong>Yüksek Puan</strong> ödülleri.</li>
-                            <li>Çarkta <strong>PAS DİLİMİ YOKTUR!</strong> Kesin ödül kazanırsın.</li>
-                            <li>Puanı katlayan <strong>x2 ve x3 Çarpanları</strong> bulunur!</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Kart Katlama Oyunu -->
-            <div class="card">
-                <span class="card-icon">🃏</span>
-                <h3>Kart Seçme ve Katlama Oyunu</h3>
-                <p>Riske gir, aşamaları geç ve büyük ödülü (VP) kap!</p>
-                
-                <div class="stage-box">
-                    <h4>1. Aşama</h4>
-                    <p>Masada <strong>4 Kart</strong> vardır. Seçimini yaparsın, doğruyu bulursan <strong>375 VP</strong> senin olur. "TAMAM" deyip çekilebilir veya "DEVAM" diyerek riski artırabilirsin.</p>
+                    <li class="red-bullet"><strong>Ödül Alımı:</strong> Kazanılan ödülleri <strong>instagram hesabımıza DM</strong> atarak alabilirsiniz!</li>
+                </ul>
+                <div class="warning-box">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div><span class="title">UYARI:</span> Her izleyici sadece 1 hesapla ödül kazanabilir. Birden fazla hesap açarak katılanlar tespit edilirse tüm hesaplar banlanır ve ödül teslim edilmez!</div>
                 </div>
-                
-                <div class="stage-box">
-                    <h4>2. Aşama (Devam Edersen)</h4>
-                    <p>Masadan 1 kart eksilir ve <strong>3 Kart</strong> kalır. Seçtiğin kart doğru çıkarsa ödülün <strong>825 VP</strong>'ye yükselir!</p>
-                </div>
-
-                <div class="stage-box">
-                    <h4>3. Aşama (Son Aşama)</h4>
-                    <p>Masada sadece <strong>2 Kart</strong> kalır. Doğru olanı bulursan büyük ödül olan <strong>1.700 VP</strong>'nin sahibi olursun!</p>
-                </div>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-gray);"><em>Not: İstediğin zaman sohbete <span class="command">TAMAM</span> yazarak kazandığın mevcut ödülü alıp envanterine ekleyebilirsin.</em></p>
             </div>
 
         </div>
+
+        <!-- SOSYAL MEDYA ALT BAR -->
+        <footer class="social-footer">
+            <a href="https://kick.com/weizend" target="_blank" class="social-item">
+                <i class="fa-solid fa-k social-icon kick-color"></i>
+                <span>weizend</span>
+            </a>
+            <a href="https://instagram.com/weizendtv" target="_blank" class="social-item">
+                <i class="fa-brands fa-instagram social-icon insta-color"></i>
+                <span>weizendtv</span>
+            </a>
+            <a href="https://www.tiktok.com/@weizend" target="_blank" class="social-item">
+                <i class="fa-brands fa-tiktok social-icon tiktok-color"></i>
+                <span>@weizend</span>
+            </a>
+            <a href="https://www.youtube.com/weizend" target="_blank" class="social-item">
+                <i class="fa-brands fa-youtube social-icon youtube-color"></i>
+                <span>weizend</span>
+            </a>
+            <a href="https://www.bynogame.com/destekle/weizend" target="_blank" class="social-item">
+                <i class="fa-brands fa-steam social-icon steam-color"></i>
+                <span>weizend</span>
+            </a>
+            <a href="https://weizend.github.io/weizendmarket/" target="_blank" class="social-item">
+                <i class="fa-solid fa-cart-shopping social-icon market-color"></i>
+                <span>Market</span>
+            </a>
+            <a href="https://discord.gg/4gPwXCySzz" target="_blank" class="social-item">
+                <i class="fa-brands fa-discord social-icon discord-color"></i>
+                <span>4gPvXCySzz</span>
+            </a>
+        </footer>
 
     </div>
-
-    <!-- YÖNLENDİRME VE BUTONLAR KISMI -->
-    <section class="cta-section">
-        <h2 class="cta-title">DESTEK OL VE BİZE KATIL</h2>
-        <div class="button-group">
-            <a href="https://kick.com/weizend" target="_blank" class="btn btn-primary">Kick Canlı Yayın</a>
-            <a href="https://kick.com/weizend/subscribe" target="_blank" class="btn btn-primary">Abone Ol</a>
-            <a href="https://www.bynogame.com/destekle/weizend" target="_blank" class="btn btn-primary">Bynogame Bağış</a>
-            <a href="https://weizend.github.io/weizendmarket/" target="_blank" class="btn btn-primary">Puan Market</a>
-            <a href="https://instagram.com/weizendtv" target="_blank" class="btn btn-primary">İnstagram</a>
-            <a href="https://www.youtube.com/weizend" target="_blank" class="btn btn-primary">Youtube</a>
-            <a href="https://www.tiktok.com/@weizend" target="_blank" class="btn btn-primary">Tiktok</a>
-            <a href="https://discord.gg/4gPwXCySzz" target="_blank" class="btn btn-primary">Discord</a>
-        </div>
-    </section>
 
 </body>
 </html>
